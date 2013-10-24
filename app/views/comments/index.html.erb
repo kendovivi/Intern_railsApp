@@ -1,0 +1,26 @@
+<h2>
+  Comments List
+</h2>
+
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>body</th>
+    <th>PostTime</th>
+  </tr>
+
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.commenter %></td>
+      <td><%= comment.body %></td>
+      <td>Time</td>
+    </tr>
+  <% end %>
+
+</table><br>
+
+<%= page_entries_info @comments %>
+<%= will_paginate @comments %>
+
+
+<p><%= link_to 'Back to PostList', posts_path %><p>

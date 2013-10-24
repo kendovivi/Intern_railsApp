@@ -1,0 +1,39 @@
+<h2>Post Detail</h2>
+
+<p>
+  <strong>Title:</strong> <%= @post.title %>
+</p>
+
+<p>
+  <strong>Text:</strong> <%= @post.text %>
+</p>
+
+<p>
+  <%= image_tag @post.avatar(:thumb) %>
+</p>
+
+<p>*****************************************</p>
+
+<h2>Comments:</h2>
+  <table>
+    <tr>
+      <th>Commenter | </th>
+      <th>Comment | </th>
+      <th>Post Time | </th>
+      <th>Option</th>
+    </tr>
+
+  <%= render @comments %>
+  </table>
+  <br>
+  <%= page_entries_info @comments%>
+  <%= will_paginate @comments%>
+  
+<p>*****************************************</p>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form'%>
+
+
+
+<%= link_to 'Edit Post', edit_post_path(@post) %> | <%= link_to 'Back to PostsList', posts_path %>

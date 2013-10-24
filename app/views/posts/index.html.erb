@@ -1,0 +1,49 @@
+<h1>Listing posts</h1>
+<%= link_to 'New Post', new_post_path %><br>
+
+<!--need to modify here 2013/10/18 @wang -->
+<form action="posts" method="get">
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :title => nil %>
+  </p>
+</form>
+
+
+
+<br><br>
+
+<table>
+  <tr>
+    <td colspan=2>tag1</td>
+    <td colspan=2>tag2</td>
+  </tr>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Reply</th>
+    <th>Option</th>
+    
+  </tr>
+
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= link_to post.text, post_comments_path(post.id) %></td>
+      <td><%= link_to post.comments.size, post_comments_path(post.id) %></td>
+      <td><%= link_to 'Show', post_path(post.id) %></td>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post_path(post),
+                                method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+    
+  <% end %>
+</table>
+<br>
+
+<%= page_entries_info @posts %>
+<%= will_paginate @posts%>
+
+
+
