@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class PostsController < ApplicationController
   
   http_basic_authenticate_with name:"admin", password: "admin", except: [:index, :show]
@@ -22,8 +24,15 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.paginate(page: params[:page], per_page: 10)
-    #@posts = Post.search(params[:search])
+
+    #if params[:tag]
+    #  @posts = Post.find(:all, conditions: {tag: params[:tag]})
+    #else
+    #  @posts = Post.all
+    @posts = Post.search(params[:search],params[:tag])
+
+    
+    @posts = @posts.paginate(page: params[:page], per_page: 5)
   end
 
   def edit
@@ -49,7 +58,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :text, :avatar)
+      params.require(:post).permit(:title, :text, :avatar, :tag)
     end
 
 end

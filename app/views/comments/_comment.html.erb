@@ -2,6 +2,6 @@
   <td><%= comment.commenter %></td>
   <td><%= comment.body%></td>
   <td>time</td>
-  <td><%= link_to 'delete', [comment.post, comment], method: :delete, data: { confirm: "Are you sure?"} %></td>
+  <td><%= link_to 'delete', del_post_comment_path(comment.post, comment) %></td>
 </tr>
 

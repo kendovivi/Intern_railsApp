@@ -1,25 +1,42 @@
+
+<div style="border-bottom: 2px solid silver">
 <h2>Post Detail</h2>
 
-<p>
-  <strong>Title:</strong> <%= @post.title %>
-</p>
+<%= link_to 'Edit Post', edit_post_path(@post) %> | <%= link_to 'Back to PostsList', posts_path %>
 
-<p>
-  <strong>Text:</strong> <%= @post.text %>
-</p>
+</div>
 
-<p>
-  <%= image_tag @post.avatar(:thumb) %>
-</p>
+<div style="border-bottom:5px double silver;height:450px">
 
-<p>*****************************************</p>
+  <div style="float:left;width:300px;height:400px;">
+    
 
-<h2>Comments:</h2>
+    <p>
+      <b>Title:</b> <%= @post.title %>
+    </p>
+
+    <p style="border: 1px solid silver; width: 305px;">
+      <%= image_tag @post.avatar(:medium) %>
+    </p>
+  </div>
+  
+  <div style="float:left;width:600px;height:400px;margin:0 0 0 100px">
+    <p>
+      <b>Text:</b><br> <%= @post.text %>
+    </p>
+  </div>
+</div>
+
+
+<div style="float:left;height:300px;width: 500px;">
+
+
+<h2>Comments: (<%= @post.comments.count %>)</h2>
   <table>
     <tr>
-      <th>Commenter | </th>
-      <th>Comment | </th>
-      <th>Post Time | </th>
+      <th>Commenter</th>
+      <th>Comment</th>
+      <th>Post Time</th>
       <th>Option</th>
     </tr>
 
@@ -29,11 +46,11 @@
   <%= page_entries_info @comments%>
   <%= will_paginate @comments%>
   
-<p>*****************************************</p>
+</div>
 
-<h2>Add a comment:</h2>
+<div style="background-color:#ADD6FF ;width: 660px;float: left;margin: 0 0 0 100px;border-left: 5px solid silver;height: 30s0px;">
+<h2>add your comment:</h2>
 <%= render 'comments/form'%>
 
+</div>
 
-
-<%= link_to 'Edit Post', edit_post_path(@post) %> | <%= link_to 'Back to PostsList', posts_path %>

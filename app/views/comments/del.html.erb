@@ -1,0 +1,12 @@
+
+<%= form_tag(post_comment_path(params[:post_id],params[:id]), method: :delete) do %>
+<p>
+  <%= label :password ,:password %><br>
+  <%= password_field :password, :password %>
+</p>
+
+<p> 
+  <%= submit_tag :delete %>
+</p>
+
+<% end %>

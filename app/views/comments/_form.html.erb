@@ -1,4 +1,6 @@
 <%= form_for ([@post,@post.comments.build]) do |f| %>
+  
+<div style="float:left">
   <p>
     <%= f.label :commenter %><br>
     <%= f.text_field :commenter %>
@@ -13,7 +15,9 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </p>
+</div>
 
+<div style="float:left;">
   <p>
     <%= f.label :body %><br>
     <%= f.text_area :body %>
@@ -22,4 +26,5 @@
   <p>
     <%= f.submit %>
   </p>
+</div>
 <% end %>

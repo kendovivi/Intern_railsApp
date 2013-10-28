@@ -1,19 +1,34 @@
 <%= form_for @post do |f| %>
   <% if @post.errors.any? %>
-  <div id="errorExplanation">
+
+  <!-- Error msg -->
+  <div id="errorExplanation" style="color:red">
     <h2>
       <%= pluralize(@post.errors.count, "error")%> prohibited this post from being saved:
     </h2>
     <ul>
       <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li ><%= msg %></li>
       <% end %>
     </ul>
   </div>
   <% end %>
+
+
+  <!-- input form Create or Edit -->
   <p>
   	<%= f.label :title %><br>
   	<%= f.text_field :title %>
+  </p>
+  
+  <p>
+    Please choose the Post tag:<br><br>
+    <%= f.radio_button(:tag, "Sports") %>
+    <%= f.label :tag, "Sports", value: "sports" %>
+    <%= f.radio_button(:tag, "Ecomony") %>
+    <%= f.label :tag, "Ecomony", value: "ecomony" %>
+    <%= f.radio_button(:tag, "Computer Science") %>
+    <%= f.label :tag, "Computer Science", value: "computer science" %>
   </p>
 
   <p>
@@ -22,9 +37,11 @@
   </p> 
 
   <p>
-    <%= f.label :avatar %>
+    <%= f.label :picture %><br>
     <%= f.file_field :avatar %>
   </p>
+
+  
 
   <p>
     <%= f.submit %>

@@ -13,12 +13,12 @@
 
 <br><br>
 
-<table>
+<table style="text-align:left; padding-right: 50px;">
   <tr>
-    <td colspan=2>tag1</td>
-    <td colspan=2>tag2</td>
+    <%= link_to 'All posts', posts_path %>
   </tr>
   <tr>
+    <th>Tag</th>
     <th>Title</th>
     <th>Text</th>
     <th>Reply</th>
@@ -29,12 +29,18 @@
 
   <% @posts.each do |post| %>
     <tr>
-      <td><%= post.title %></td>
+      <td><%= link_to "[#{post.tag}]", posts_path( tag: post.tag) %></td>
+      <td><%= post.title %>
+          <% if post.avatar.size %>
+          <img src='missing.png'>
+          <% else
+          end %>
+      </td>
       <td><%= link_to post.text, post_comments_path(post.id) %></td>
       <td><%= link_to post.comments.size, post_comments_path(post.id) %></td>
-      <td><%= link_to 'Show', post_path(post.id) %></td>
-      <td><%= link_to 'Edit', edit_post_path(post) %></td>
-      <td><%= link_to 'Destroy', post_path(post),
+      <td><%= link_to 'Show', post_path(post.id) %>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Destroy', post_path(post),
                                 method: :delete, data: {confirm: 'Are you sure?'} %></td>
     </tr>
     
