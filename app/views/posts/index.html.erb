@@ -1,7 +1,13 @@
 <h1>Listing posts</h1>
 <%= link_to 'New Post', new_post_path %><br>
 
-<!--need to modify here 2013/10/18 @wang -->
+
+ 
+<!--******************************
+* search by title                *
+* no input -> find all           *
+*                                *
+*******************************-->
 <form action="posts" method="get">
   <p>
     <%= text_field_tag :search, params[:search] %>
@@ -9,9 +15,15 @@
   </p>
 </form>
 
+<br>
+  <%= flash[:notice] %><br>
+<br>
 
-
-<br><br>
+<!--******************************
+* list all the posts find by     * 
+* search                         *         
+*                                *
+*******************************-->
 
 <table style="text-align:left; padding-right: 50px;">
   <tr>
@@ -26,17 +38,24 @@
     
   </tr>
 
-
   <% @posts.each do |post| %>
     <tr>
-      <td><%= link_to "[#{post.tag}]", posts_path( tag: post.tag) %></td>
-      <td><%= post.title %>
+      <td><%= link_to "[#{post.tag}]", posts_path(tag: post.tag) %></td>
+      <td>
           <% if post.avatar.size %>
-          <img src='missing.png'>
-          <% else
-          end %>
+          <%= image_submit_tag 'has_image.png', class: 'has_picture', disabled: true %>
+          <% else %>
+          <%= image_submit_tag 'no_image.png', class: 'has_picture', disabled: true %>
+          <% end %>
+          <%= post.title %>
       </td>
-      <td><%= link_to post.text, post_comments_path(post.id) %></td>
+      <% str =if post.text.length > 20 
+           '...'
+         else
+           '' 
+         end
+      %>
+      <td><%= link_to post.text[0,20]+str, post_comments_path(post.id) %></td>
       <td><%= link_to post.comments.size, post_comments_path(post.id) %></td>
       <td><%= link_to 'Show', post_path(post.id) %>
       <%= link_to 'Edit', edit_post_path(post) %>
@@ -48,8 +67,13 @@
 </table>
 <br>
 
+<!-- pages -->
 <%= page_entries_info @posts %>
 <%= will_paginate @posts%>
 
+<p>
+<%= image_submit_tag 'has_image.png', class: 'has_picture' %> has attached file<br>
+<%= image_submit_tag 'no_image.png', class: 'has_picture' %> no attached file
+</p>
 
 

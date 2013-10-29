@@ -24,15 +24,8 @@ class PostsController < ApplicationController
   end
 
   def index
-
-    #if params[:tag]
-    #  @posts = Post.find(:all, conditions: {tag: params[:tag]})
-    #else
-    #  @posts = Post.all
     @posts = Post.search(params[:search],params[:tag])
-
-    
-    @posts = @posts.paginate(page: params[:page], per_page: 5)
+    @posts = @posts.paginate(page: params[:page], per_page: 10)
   end
 
   def edit
@@ -52,8 +45,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-
-    redirect_to posts_path
+    redirect_to posts_path, notice: 'post delete successful!'
   end
 
   private

@@ -9,8 +9,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
 
-    @comment = 
-      @post.comments.create(params[:comment].permit(:commenter, :body, :password, :password_confirmation))
+    @comment = @post.comments.create(params[:comment].permit(:commenter, :body, :password, :password_confirmation))
     redirect_to post_path(@post)
   end
   
@@ -23,7 +22,7 @@ class CommentsController < ApplicationController
     
     if comment.authenticate(params[:password])
       comment.destroy
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: 'comment delete success!'
     else
       redirect_to del_post_comment_path(params[:post_id], params[:id]), alert: 'password error'
     end

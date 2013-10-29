@@ -4,10 +4,15 @@
 
 th {
 	width       : 230px;
-	#border-left : 1px solid #000000;
+	#border-left: 1px solid #000000;
 	border-right: 1px solid #000000;
 }
 
 td {
 	border-right: 1px solid #000000;
+}
+
+.has_picture {
+	width : 10px;
+	height: 10px;
 }
