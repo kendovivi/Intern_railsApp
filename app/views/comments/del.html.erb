@@ -1,9 +1,18 @@
 
-<%= form_tag(post_comment_path(params[:post_id],params[:id]), method: :delete) do %>
+<%= form_tag(
+post_comment_path(params[:post_id],params[:id]),
+ {
+ 	method: "delete",
+ }
+ ) do %>
+ 
 <p>
-  <%= label :password ,:password %><br>
-  <%= password_field :password, :password %>
+  <%= label_tag 'password' %><br>
+  <%= password_field_tag 'password' %>
+  <nbsp;><font color="red"><%= flash[:alert] %></font>
 </p>
+
+
 
 <p> 
   <%= submit_tag :delete %>

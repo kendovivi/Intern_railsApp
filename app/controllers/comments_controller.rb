@@ -19,13 +19,13 @@ class CommentsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
+    comment = @post.comments.find(params[:id])
     
-    if @comment.authenticate(params[:password])
-      @comment.destroy
+    if comment.authenticate(params[:password])
+      comment.destroy
       redirect_to post_path(@post)
     else
-      redirect_to post_path(@post)
+      redirect_to del_post_comment_path(params[:post_id], params[:id]), alert: 'password error'
     end
   end
 
