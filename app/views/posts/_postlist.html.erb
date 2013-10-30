@@ -10,12 +10,14 @@
 </p>
 <!-- pages -->
 <%= page_entries_info @posts %>
-<%= will_paginate @posts%>
-<div style="border-bottom:1px solid silver; margin: 10px 0 10px 0;"></div>
-<% @posts.each do |post| %>
+<%= will_paginate @posts%><br>
 
-<div style="border-bottom: 1px dotted silver;width:1000px;height: 75px;margin:20px 0 0 50px;">
-  <div style="float:left;border-right: 0px solid silver;width:250px;height: 75px;">
+
+
+
+<div style="float:left;border-top: 1px dotted silver;width:800px;height: 75px;margin:20px 0 0 50px;">
+  <% @posts.each do |post| %>
+  <div style="float:left;border-bottom: 1px solid silver;width:250px;height: 75px;">
     <div style="border-bottom: 0px solid silver;width:250px;height: 40px;">  Title:<br>
       <% if post.avatar.size %>
         (<%= image_submit_tag 'has_image.png', class: 'has_picture', disabled: true %>)
@@ -34,8 +36,8 @@
     </div>
   </div>
 
-  <div style="float:right;border: 0px solid green;width:600px;height: 75px;">
-    <div style="border-bottom: 0px solid silver;width:600px;height: 20px;">
+  <div style="float:right;border-bottom: 1px solid green;border-right: 1px dotted silver;width:500px;height: 75px;">
+    <div style="border-bottom: 0px solid silver;width:500px;height: 20px;">
       Reply : <%= link_to post.comments.size, post_comments_path(post.id) %>
       <%= link_to 'Detail', post_path(post.id) %>
       <%= link_to 'Edit', edit_post_path(post) %>
@@ -43,15 +45,27 @@
                                 method: :delete, data: {confirm: 'Are you sure?'} %>
       <%= post.created_at %>
     </div>
-    <div style="text-align:left;border-bottom: 0px solid silver;width:600px;height: 55px;padding: 10px 10px 0 0;">
-      <% str = post.text.length > 100? '...' : '' %>
-      <%= post.text[0,100] + str %>
+    <div style="text-align:left;border-bottom: 0px solid silver;width:500px;height: 55px;padding: 10px 10px 0 0;">
+      <% str = post.text.length > 50? '...' : '' %>
+      <%= post.text[0,50] + str %>
     </div>
   </div>
+
+  <% end %>
 </div>
-<% end %>
+
+
+<div id="tagCloudContainer" class="tagCloudContainer">
+  <canvas width="300" height="300" id="tagCloud"></canvas>
+</div>
+<div id="tags" style="display:none">      
+  <% @tags.each do |tag|%>
+    <%= link_to tag.name, posts_path(tag: tag.id) %>
+  <% end %>
+</div>
+
 <br>
 
-<div style="border-bottom:1px solid silver; margin: 10px 0 10px 0;"></div>
+
 <!-- pages -->
 <%= will_paginate @posts%>

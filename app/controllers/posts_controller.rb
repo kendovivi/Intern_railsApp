@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.search(params[:search],params[:tag])
     @posts = @posts.paginate(page: params[:page], per_page: 10)
+    @tags = Tag.find(:all)
   end
 
   def edit
