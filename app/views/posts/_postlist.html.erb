@@ -1,0 +1,57 @@
+<!--******************************
+* list all the posts find by     * 
+* search                         *         
+*                                *
+*******************************-->
+<%= link_to 'All posts', posts_path %><br>
+<p>
+<%= image_submit_tag 'has_image.png', class: 'has_picture' %> has attached file<br>
+<%= image_submit_tag 'no_image.png', class: 'has_picture' %> no attached file
+</p>
+<!-- pages -->
+<%= page_entries_info @posts %>
+<%= will_paginate @posts%>
+<div style="border-bottom:1px solid silver; margin: 10px 0 10px 0;"></div>
+<% @posts.each do |post| %>
+
+<div style="border-bottom: 1px dotted silver;width:1000px;height: 75px;margin:20px 0 0 50px;">
+  <div style="float:left;border-right: 0px solid silver;width:250px;height: 75px;">
+    <div style="border-bottom: 0px solid silver;width:250px;height: 40px;">  Title:<br>
+      <% if post.avatar.size %>
+        (<%= image_submit_tag 'has_image.png', class: 'has_picture', disabled: true %>)
+      <% else %>
+        (<%= image_submit_tag 'no_image.png', class: 'has_picture', disabled: true %>)
+      <% end %>
+      <%= post.title %>
+    </div>
+    <div width="400">
+      <%= image_submit_tag 'tag.png', class: 'tag_mark' %>
+      <% post.tag_ids.each do |t|
+        tag = Tag.find(t)
+      %>
+          <%= link_to tag.name, posts_path(tag: tag.id) %><nbsp;>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="float:right;border: 0px solid green;width:600px;height: 75px;">
+    <div style="border-bottom: 0px solid silver;width:600px;height: 20px;">
+      Reply : <%= link_to post.comments.size, post_comments_path(post.id) %>
+      <%= link_to 'Detail', post_path(post.id) %>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Destroy', post_path(post),
+                                method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= post.created_at %>
+    </div>
+    <div style="text-align:left;border-bottom: 0px solid silver;width:600px;height: 55px;padding: 10px 10px 0 0;">
+      <% str = post.text.length > 100? '...' : '' %>
+      <%= post.text[0,100] + str %>
+    </div>
+  </div>
+</div>
+<% end %>
+<br>
+
+<div style="border-bottom:1px solid silver; margin: 10px 0 10px 0;"></div>
+<!-- pages -->
+<%= will_paginate @posts%>

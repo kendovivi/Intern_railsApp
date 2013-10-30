@@ -10,15 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    tag = ''
     @post = Post.new(post_params)
-    @post.tag.each do |x|
-      unless x == '0'
-        tag += x+';'
-      end
-    end
-    @post.tag = tag
-      
     if @post.save
       redirect_to @post
     else
@@ -43,7 +35,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(params[:post].permit(:title, :text))
+    if @post.update(params[:post].permit(:title, :text, :avatar, tag_ids: []))
       redirect_to @post
     else
       render 'edit'
@@ -58,7 +50,17 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :text, :avatar, tag: [])
+      params.fetch(:post).permit(:title, :text, :avatar, tag_ids: [])
+    end
+
+    def set_tagArr(tag_arr)
+      str = ''
+      tag_arr.each do |tag|
+        unless tag == '0'
+          str += tag + ';'
+        end
+      end
+      return str;
     end
 
 end

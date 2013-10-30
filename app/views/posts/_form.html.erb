@@ -23,12 +23,11 @@
   
   <p>
     Please choose the Post tag:<br><br>
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Sports' %> Sports
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Economy' %> Economy
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Computer Science' %> Computer Science
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Game' %> Game
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Travel' %> Travel
 
+    <% for tag in Tag.find(:all) %>
+      <%= check_box_tag "post[tag_ids][]", tag.id, @post.tag_ids.include?(tag.id) %>
+      <%= tag.name %>
+    <% end %>
   </p>
 
   <p>

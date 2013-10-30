@@ -1,8 +1,5 @@
 <h1>Listing posts</h1>
 <%= link_to 'New Post', new_post_path %><br>
-
-
- 
 <!--******************************
 * search by title                *
 * no input -> find all           *
@@ -18,68 +15,9 @@
 <br>
   <%= flash[:notice] %><br>
 <br>
-
-<!--******************************
-* list all the posts find by     * 
-* search                         *         
-*                                *
-*******************************-->
-
-<table style="text-align:left; padding-right: 50px;">
-  <tr>
-    <%= link_to 'All posts', posts_path %>
-  </tr>
-  <tr>
-    <th></th>
-    <th>Title</th>
-    <th>Text</th>
-    <th>Reply</th>
-    <th>Option</th>
-    
-  </tr>
-
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= image_submit_tag 'tag.png', class: 'tag_mark' %> 
-        <% post.tag.split(';').each do |tag_element| %>
-          <%= link_to "#{tag_element}", posts_path(tag: tag_element) %><nbsp;>
-        <% end %>
+<%= render 'postlist' %>
 
 
-      </td>
-      <td>
-          <% if post.avatar.size %>
-          <%= image_submit_tag 'has_image.png', class: 'has_picture', disabled: true %>
-          <% else %>
-          <%= image_submit_tag 'no_image.png', class: 'has_picture', disabled: true %>
-          <% end %>
-          <%= post.title %>
-      </td>
-      <% str =if post.text.length > 20 
-           '...'
-         else
-           '' 
-         end
-      %>
-      <td><%= link_to post.text[0,20]+str, post_comments_path(post.id) %></td>
-      <td><%= link_to post.comments.size, post_comments_path(post.id) %></td>
-      <td><%= link_to 'Show', post_path(post.id) %>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Destroy', post_path(post),
-                                method: :delete, data: {confirm: 'Are you sure?'} %></td>
-    </tr>
-    
-  <% end %>
-</table>
-<br>
 
-<!-- pages -->
-<%= page_entries_info @posts %>
-<%= will_paginate @posts%>
-
-<p>
-<%= image_submit_tag 'has_image.png', class: 'has_picture' %> has attached file<br>
-<%= image_submit_tag 'no_image.png', class: 'has_picture' %> no attached file
-</p>
 
 
