@@ -23,12 +23,12 @@
   
   <p>
     Please choose the Post tag:<br><br>
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Sports' %> Sports
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Economy' %> Economy
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Computer Science' %> Computer Science
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Game' %> Game
-    <%= f.check_box :tag, {name: 'post[tag][]'},'Travel' %> Travel
-
+    <%= f.radio_button(:tag, "Sports") %>
+    <%= f.label :tag, "Sports", value: "sports" %>
+    <%= f.radio_button(:tag, "Ecomony") %>
+    <%= f.label :tag, "Ecomony", value: "ecomony" %>
+    <%= f.radio_button(:tag, "Computer Science") %>
+    <%= f.label :tag, "Computer Science", value: "computer science" %>
   </p>
 
   <p>

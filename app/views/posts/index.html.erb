@@ -30,7 +30,7 @@
     <%= link_to 'All posts', posts_path %>
   </tr>
   <tr>
-    <th>Tag</th>
+    <th></th>
     <th>Title</th>
     <th>Text</th>
     <th>Reply</th>
@@ -40,7 +40,13 @@
 
   <% @posts.each do |post| %>
     <tr>
-      <td><%= link_to "[#{post.tag}]", posts_path(tag: post.tag) %></td>
+      <td><%= image_submit_tag 'tag.png', class: 'tag_mark' %> 
+        <% post.tag.split(';').each do |tag_element| %>
+          <%= link_to "#{tag_element}", posts_path(tag: tag_element) %><nbsp;>
+        <% end %>
+
+
+      </td>
       <td>
           <% if post.avatar.size %>
           <%= image_submit_tag 'has_image.png', class: 'has_picture', disabled: true %>

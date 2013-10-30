@@ -10,7 +10,15 @@ class PostsController < ApplicationController
   end
 
   def create
+    tag = ''
     @post = Post.new(post_params)
+    @post.tag.each do |x|
+      unless x == '0'
+        tag += x+';'
+      end
+    end
+    @post.tag = tag
+      
     if @post.save
       redirect_to @post
     else
@@ -50,7 +58,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :text, :avatar, :tag)
+      params.require(:post).permit(:title, :text, :avatar, tag: [])
     end
 
 end
