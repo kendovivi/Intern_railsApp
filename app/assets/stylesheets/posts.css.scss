@@ -12,20 +12,71 @@ td {
 	border-right: 1px solid #000000;
 }
 
+canvas{
+	width: 280px;
+	height: 300px;
+}
+
+
 .has_picture {
 	width : 10px;
 	height: 10px;
 }
 
-.tag_mark {
-	width : 15px;
-	height: 15px; 
+.post {
+	float:left;
+	border-top: 1px dotted silver;
+	width:800px;
+	height: 75px;
+	margin:20px 0 0 50px;
 }
+
+.post_title {
+	float:left;
+	border-bottom: 1px solid silver;
+	width:250px;
+	height: 85px;
+}
+
+.post_title1 {
+	border-bottom: 0px solid silver;
+	width:250px;
+	height: 40px;
+}
+
+.post_title2 {
+	border-bottom: 0px solid silver;
+	width:250px;
+	height: 40px;
+}
+
+.post_text {
+	float:right;
+	border-bottom: 1px solid green;
+	border-right: 1px dotted silver;
+	width:500px;
+	height: 85px;
+}
+
+.post_text1 {
+	border-bottom: 0px solid silver;
+	width:500px;
+	height: 20px;
+}
+
+.post_text2 {
+	text-align:left;
+	border: 0px solid red;
+	width:500px;
+	height: 45px;
+	padding: 10px 10px 0 0;
+}
+
 
 .tagCloudContainer {
 	float:left;
 	border:2px solid orange;
-	width:300px;
+	width:280px;
 	height:300px;
 	margin:20px 0 0 20px;
 }

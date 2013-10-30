@@ -1,0 +1,29 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container" style="margin:0 0 0 20px;width:90%">
+      <%= link_to "Intern Rails app@BPS", 'http://www.bpsinc.jp/', id: "logo" %>
+      <ul class="nav">
+        <li>
+          
+<span class="label" style="padding:5px 5px 5px 5px; margin: 10px 20px 0 0;">
+<%= image_submit_tag 'has_image.png', class: 'has_picture' %> has attached file <%= image_submit_tag 'no_image.png', class: 'has_picture' %> no attached file</span>
+        </li>
+        <li style='padding: 10px 10px 0px 0;'><i class='icon-align-justify icon-white'></i><nbsp;><%= link_to "  All Posts", posts_path %></li>
+      	<li style='padding: 10px 0 0px 0;'><i class='icon-pencil icon-white'></i><nbsp;><%= link_to " Create a Post", new_post_path %></li>
+      	<li class="divider-vertical"></li>
+      	<li>
+          <!--******************************
+          * search by title                *
+          * no input -> find all           *
+          *                                *
+          *******************************-->
+          <form class="navbar-search pull-left" action="posts" method="get" style='padding: 2px 0 5px 0;'>
+          	<%= image_submit_tag("search.png", class: "search_btn", alt: 'Search Title') %>
+          	<%= text_field_tag :search, params[:search], class: "search-query", value: "" %>
+            
+          </form>
+      	</li>
+      </ul>
+    </div>
+  </div>
+</header>

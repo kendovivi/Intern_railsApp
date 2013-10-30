@@ -1,5 +1,9 @@
 document.ready = function() {
-    try {
+    set_tagCloud();
+ };
+
+ function set_tagCloud() {
+ 	try {
         TagCanvas.Start('tagCloud','tags',{
         textColour: 'blue',
         outlineColour: '#ff00ff',
@@ -12,4 +16,4 @@ document.ready = function() {
       // if something went wrong, hide the tagcloud container
       document.getElementById('tagCloudContainer').style.display = 'none';
     }
-  };
+ }

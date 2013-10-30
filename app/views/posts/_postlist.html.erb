@@ -3,22 +3,17 @@
 * search                         *         
 *                                *
 *******************************-->
-<%= link_to 'All posts', posts_path %><br>
-<p>
-<%= image_submit_tag 'has_image.png', class: 'has_picture' %> has attached file<br>
-<%= image_submit_tag 'no_image.png', class: 'has_picture' %> no attached file
-</p>
+
+
 <!-- pages -->
 <%= page_entries_info @posts %>
 <%= will_paginate @posts%><br>
 
 
-
-
-<div style="float:left;border-top: 1px dotted silver;width:800px;height: 75px;margin:20px 0 0 50px;">
+<div class="post">
   <% @posts.each do |post| %>
-  <div style="float:left;border-bottom: 1px solid silver;width:250px;height: 75px;">
-    <div style="border-bottom: 0px solid silver;width:250px;height: 40px;">  Title:<br>
+  <div class="post_title">
+    <div class="post_title1">  Title:<br>
       <% if post.avatar.size %>
         (<%= image_submit_tag 'has_image.png', class: 'has_picture', disabled: true %>)
       <% else %>
@@ -26,26 +21,31 @@
       <% end %>
       <%= post.title %>
     </div>
-    <div width="400">
-      <%= image_submit_tag 'tag.png', class: 'tag_mark' %>
+    <div class="post_title2">
+      <i class="icon-tags"></i>
       <% post.tag_ids.each do |t|
+        #NG HERE, access DB in viewers
         tag = Tag.find(t)
       %>
-          <%= link_to tag.name, posts_path(tag: tag.id) %><nbsp;>
+          <%= link_to tag.name, posts_path(tag: tag.id) %>,<nbsp;>
       <% end %>
     </div>
   </div>
 
-  <div style="float:right;border-bottom: 1px solid green;border-right: 1px dotted silver;width:500px;height: 75px;">
-    <div style="border-bottom: 0px solid silver;width:500px;height: 20px;">
-      Reply : <%= link_to post.comments.size, post_comments_path(post.id) %>
-      <%= link_to 'Detail', post_path(post.id) %>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Destroy', post_path(post),
+  <div class="post_text">
+    <div class="post_text1">
+      <span style="float:left;margin-right:20px"><i class="icon-comment"> </i> <%= link_to post.comments.size, post_comments_path(post.id) %></span>
+
+      <span><%= post.created_at %><span>
+      <span style="float:right;padding-right:10px;">
+      <i class="icon-eye-open"></i> <%= link_to 'Detail', post_path(post.id) %>
+      <i class="icon-edit"></i> <%= link_to 'Edit', edit_post_path(post) %>
+      <i class="icon-trash"> </i><%= link_to 'Destroy', post_path(post),
                                 method: :delete, data: {confirm: 'Are you sure?'} %>
-      <%= post.created_at %>
+      </span>
+      
     </div>
-    <div style="text-align:left;border-bottom: 0px solid silver;width:500px;height: 55px;padding: 10px 10px 0 0;">
+    <div class="post_text2">
       <% str = post.text.length > 50? '...' : '' %>
       <%= post.text[0,50] + str %>
     </div>
@@ -54,18 +54,13 @@
   <% end %>
 </div>
 
-
 <div id="tagCloudContainer" class="tagCloudContainer">
-  <canvas width="300" height="300" id="tagCloud"></canvas>
-</div>
-<div id="tags" style="display:none">      
+  <canvas width="280px" height="300px" id="tagCloud"></canvas></div>
+<div id="tags" style="display:none">     
   <% @tags.each do |tag|%>
     <%= link_to tag.name, posts_path(tag: tag.id) %>
   <% end %>
-</div>
-
-<br>
-
+</div><br>
 
 <!-- pages -->
 <%= will_paginate @posts%>

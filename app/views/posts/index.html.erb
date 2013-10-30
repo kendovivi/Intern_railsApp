@@ -1,23 +1,11 @@
-<h1>Listing posts</h1>
 <script type="text/javascript">
-  
+  set_tagCloud();
 </script>
-<%= link_to 'New Post', new_post_path %><br>
-<!--******************************
-* search by title                *
-* no input -> find all           *
-*                                *
-*******************************-->
-<form action="posts" method="get">
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :title => nil %>
-  </p>
-</form>
 
-<br>
-  <%= flash[:notice] %><br>
-<br>
+
+
+<div class="alert alert-success"><%= flash[:success] %></div><br>
+
 <%= render 'postlist' %>
 
 
