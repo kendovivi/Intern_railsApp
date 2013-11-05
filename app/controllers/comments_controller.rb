@@ -11,6 +11,11 @@ class CommentsController < ApplicationController
 
     @comment = @post.comments.create(params[:comment].permit(:commenter, :body, :password, :password_confirmation))
     redirect_to post_path(@post)
+    if @comment.save
+      flash[:success] = "Comment success!"
+    else
+      flash[:error] = "Comment failed!"
+    end
   end
   
   def del
@@ -22,9 +27,10 @@ class CommentsController < ApplicationController
     
     if comment.authenticate(params[:password])
       comment.destroy
-      redirect_to post_path(@post), notice: 'comment delete success!'
+      redirect_to post_path(@post)
+      flash[:success] = 'Comment delete success!'
     else
-      redirect_to del_post_comment_path(params[:post_id], params[:id]), alert: 'password error'
+      redirect_to del_post_comment_path(params[:post_id], params[:id]), alert: 'Password error, Please try again!'
     end
   end
 

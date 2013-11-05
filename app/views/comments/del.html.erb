@@ -1,4 +1,6 @@
-
+<% if flash.any? %>
+  <div class="alert alert-alert"><%= flash[:alert] %></div>
+<% end %>
 <%= form_tag(
 post_comment_path(params[:post_id],params[:id]),
  {
@@ -7,9 +9,8 @@ post_comment_path(params[:post_id],params[:id]),
  ) do %>
  
 <p>
-  <%= label_tag 'password' %><br>
+  <%= label_tag 'password' %>
   <%= password_field_tag 'password' %>
-  <nbsp;><font color="red"><%= flash[:alert] %></font>
 </p>
 
 

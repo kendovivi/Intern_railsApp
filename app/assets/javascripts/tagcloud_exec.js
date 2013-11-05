@@ -14,6 +14,6 @@ document.ready = function() {
       });
     } catch(e) {
       // if something went wrong, hide the tagcloud container
-      document.getElementById('tagCloudContainer').style.display = 'none';
+      //document.getElementById('tagCloudContainer').style.display = 'none';
     }
  }

@@ -2,10 +2,9 @@
   set_tagCloud();
 </script>
 
-
-
-<div class="alert alert-success"><%= flash[:success] %></div><br>
-
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div><br>
+<% end %>
 <%= render 'postlist' %>
 
 

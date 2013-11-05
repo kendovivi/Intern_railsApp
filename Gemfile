@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 1.2'
 
 #seperate pages
 gem 'will_paginate', '3.0.5'
+gem 'bootstrap-will_paginate', '0.0.9'
 #secure password
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'paperclip'

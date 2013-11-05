@@ -15,9 +15,9 @@
 //= require turbolinks
 //= require_tree .
 
-document.ready = function() {
+window.onload = function() {
     set_tagCloud();
- };
+};
 
  function set_tagCloud() {
  	try {
@@ -31,6 +31,23 @@ document.ready = function() {
       });
     } catch(e) {
       // if something went wrong, hide the tagcloud container
-      document.getElementById('tagCloudContainer').style.display = 'none';
+      //document.getElementById('tagCloudContainer').style.display = 'none';
     }
  }
+
+ function test() {
+    var $input = $('<input type="text" />');
+    var $btn = $('<input type="button" value="x" />');
+    $btn.click(function() {
+    $(this).parent().remove();
+    });    
+    var $div = $('<div style="position:absolute;left:200px;top:150px;" />');
+    $div.append($input).append($btn);
+    $('.container').append($div);
+ }
+
+
+  
+  
+
+

@@ -12,7 +12,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to @post
+      flash[:success] = "Create post successfully!"
+      redirect_to post_path(@post.id)
     else
       render 'new'
     end
@@ -25,7 +26,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.search(params[:search],params[:tag])
-    @posts = @posts.paginate(page: params[:page], per_page: 10)
+    if params[:tag]
+      flash.now[:notice] = "Are you looking for "+ Tag.find(params[:tag]).name + "?"
+    end
+
+    @posts = @posts.paginate(page: params[:page], per_page: 6)
     @tags = Tag.find(:all)
   end
 
@@ -46,7 +51,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:success] = 'post delete successful'
+    flash[:success] = 'Delete post successfully!'
     redirect_to posts_path
   end
 

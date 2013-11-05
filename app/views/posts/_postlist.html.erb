@@ -4,10 +4,11 @@
 *                                *
 *******************************-->
 
-
 <!-- pages -->
-<%= page_entries_info @posts %>
-<%= will_paginate @posts%><br>
+<div style="padding: 0 0 0 50px;">
+  <%= page_entries_info @posts %>
+  <%= will_paginate @posts%><br>
+</div>
 
 
 <div class="post">
@@ -22,19 +23,20 @@
       <%= post.title %>
     </div>
     <div class="post_title2">
-      <i class="icon-tags"></i>
-      <% post.tag_ids.each do |t|
-        #NG HERE, access DB in viewers
-        tag = Tag.find(t)
-      %>
-          <%= link_to tag.name, posts_path(tag: tag.id) %>,<nbsp;>
+      <div style="float:left;margin-right: 5px;"><i class="icon-tags"></i></div>
+      <% post.tag_ids.each do |tag_id| %>
+        <div style="float:left;">
+          <a href= <%= posts_path(tag: tag_id) %> ><button class="btn btn-info" style="padding: 1px 2px 1px 2px;margin: 0 0 10px 4px;"><%= Tag.find(tag_id).name %></button></a>
+        </div>
       <% end %>
     </div>
   </div>
 
+
+
   <div class="post_text">
     <div class="post_text1">
-      <span style="float:left;margin-right:20px"><i class="icon-comment"> </i> <%= link_to post.comments.size, post_comments_path(post.id) %></span>
+      <span style="float:left;margin-right:20px"><a href="javascript:test()"><i class="icon-comment"> </i></a> <%= link_to post.comments.size, post_comments_path(post.id) %></span>
 
       <span><%= post.created_at %><span>
       <span style="float:right;padding-right:10px;">
@@ -50,8 +52,8 @@
       <%= post.text[0,50] + str %>
     </div>
   </div>
-
   <% end %>
+  <span style="float:left;"><%= will_paginate @posts%></span>
 </div>
 
 <div id="tagCloudContainer" class="tagCloudContainer">
@@ -61,6 +63,3 @@
     <%= link_to tag.name, posts_path(tag: tag.id) %>
   <% end %>
 </div><br>
-
-<!-- pages -->
-<%= will_paginate @posts%>
