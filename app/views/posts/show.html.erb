@@ -1,59 +1,89 @@
+<!-- check tab comment & hide addcomment div -->
+
+<script type="text/javascript">
+  $(document).ready( function() {
+    $('#tab1').addClass('active');
+    $('#addcomment').hide();
+  });
+</script>
+
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<div style="border-bottom: 2px solid silver">
+<div class="PD_top">
   <h2>Post Detail</h2>
   <i class="icon-edit"></i> <%= link_to 'Edit Post', edit_post_path(@post) %> | <i class="icon-circle-arrow-left"></i> <%= link_to 'Back to PostsList', posts_path %>
 </div>
 
-<div style="border-bottom:5px double silver;height:600px">
+<div class="PD_body">
 
-  <div style="float:left;width:25%;height:600px;margin-left: 5px;">
+  <div class="PD_body_left">
     <p>
       <b>Title:</b>
       <%= @post.title %>
     </p>
 
-    <p style="border: 0px solid silver; width: 305px;">
+    <p class="PD_image">
       <%= image_tag @post.avatar(:medium) %>
     </p>
 
-    <p>
-      <div style="float:left;margin-right: 5px;"><i class="icon-tags"></i></div>
+    <div class="PD_tags_icon"><i class="icon-tags"></i></div>
      
-      <% @post.tag_ids.each do |tag_id| %>
-        <div style="float:left;">
-          <a href= <%= posts_path(tag: tag_id) %> ><button class="btn btn-info" style="padding: 1px 2px 1px 2px;margin: 0 0 10px 4px;"><%= Tag.find(tag_id).name %></button></a>
-        </div>
-      <% end %>
-        
+    <% @post.tag_ids.each do |tag_id| %>
+      <div style="float:left;">
+        <a href= <%= posts_path(tag: tag_id) %> >
+          <button class="btn btn-info">
+            <%= Tag.find(tag_id).name %>
+          </button>
+        </a>
+      </div>
+    <% end %>
 
-    </p>
   </div>
   
-  <div style="text-align:left;float:left;margin:0 0 0 50px;width:65%;height:600px;border:0px inset #000">
+  <div class="PD_body_right">
     
-      <div style="background-color:#DBDBDB;word-break:break-all;margin:20px 0 0 0;border:3px groove silver;height:200px;border-radius:10px;padding:5px 5px 5px 5px;"><%= @post.text %></div>
-      <div style="border:0px groove silver;padding:5px 5px 5px 5px;border-radius:10px;height:300px;word-break:break-all;">
-        <i class="icon-comment"></i> (
-        <%= @comments.count %>) <br>
+    <div class="PD_text"><%= @post.text %></div>
+
+    <ul class="nav nav-tabs">
+      <li id="tab1">
+        <a href="javascript:tab1_onclick()">
+          <i class="icon-comment"></i>
+          (<%= @comments.count %>)
+        </a>
+      </li>
+      <li id="tab2">
+        <a href="javascript:tab2_onclick()">
+          Add a comment
+        </a>
+      </li>
+    </ul>
+
+    <div id="comments" class="PD_comments">
         <% @comments.each do |comment| %>
           <i class="icon-user"></i> 
-          <%= comment.commenter %><br>
-          <%= comment.body %><br>
+          <%= comment.commenter %> 
+          <span style="float:right;margin: 0 0 0 0;">
+            <i class="icon-trash"></i> 
+            <%= link_to "delete", del_post_comment_path(@post, comment.id) %>
+            <%= comment.created_at.strftime('%Y-%m-%d %H:%M')%>
+          </span><br>
+          <div class="PD_text" style="height:20px;margin-top: 2px;" ><%= comment.body %></div><br>
         <% end %>
+        <%= will_paginate @comments%>  
+    </div>
 
-       <%= page_entries_info @comments %>
-      <%= will_paginate @comments%>  
-      </div>
+      <div id="addcomment" class="PD_comments" style="">
+       
+        <%= render 'comments/form'%>
     
+      </div>
+    </div>
   </div>
-</div>
 
-<div style="background-color:#ADD6FF ;width: 660px;float: left;margin: 0 0 0 100px;border-left: 5px solid silver;height: 30s0px;">
-<h2>add your comment:</h2>
-<%= render 'comments/form'%>
+  
 
-</div>
+
 

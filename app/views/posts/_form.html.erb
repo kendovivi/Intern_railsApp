@@ -3,16 +3,10 @@
 
 <div class="row">
   <div class="span10 offset2">
-    <div class="row-fluid" >
+    <div class="row-fluid">
       <div id="errorExplanation" class="span8 offset2" style="color:red">
         <% if @post.errors.any? %>
-          <h2><%= pluralize(@post.errors.count, "error")%> in the form </h2>
-          <ul>
-            <!-- show the error msg customized -->
-            <% @post.errors.each do |key,value| %>
-            <li ><%= value %></li>
-            <% end %>
-          </ul>
+          <h2><%= pluralize(@post.errors.count, "error") %> in the form </h2>
         <% end %>
       </div> 
     </div>
@@ -26,14 +20,31 @@
         <%= f.text_field :title, size: '50' %>
       </div>
     </div>
+      <% if @post.errors[:title].presence %>
+        <div class="span10 offset2">
+          <% @post.errors[:title].length.times do |i| %>
+          <ul>
+            <span style="font-size:1em;color:red">
+              <%= image_tag("error.png", size: "20x20", alt: "error_icon") %> <%= @post.errors[:title][i] %>
+            </span>
+          </ul>
+          <% end %>
+        </div>
+      <% end %>
+    
 
     <div class="row-fluid">
       <div class="span2">
         <%= f.label :text %>
       </div>
       <div class="span8">
-        <%= f.text_area :text, :size => "70x10" %>
+        <%= f.text_area :text, size: "70x10" %>
       </div>
+      <% if @post.errors[:text].presence %>
+        <div class="span10">
+          <%= @post.errors[:text][0] %>
+        </div>
+      <% end %>
     </div>
 
     <div class="row-fluid">
@@ -47,6 +58,20 @@
         <% end %>
       </div>
     </div>
+
+      <% if @post.errors[:tag_ids].presence %>
+        <div class="span10 offset2">
+          <% @post.errors[:tag_ids].length.times do |i| %>
+          <ul>
+            <span style="font-size:1em;color:red">
+              <%= image_tag("error.png", size: "20x20", alt: "error_icon") %> <%= @post.errors[:tag_ids][i] %><br>
+            </span>
+          </ul>
+          <% end %>
+        </div>
+      <% end %>
+
+    
 
     <div class="row-fluid">
       <div class="span2">

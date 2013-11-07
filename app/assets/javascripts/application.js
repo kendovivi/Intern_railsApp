@@ -14,10 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
-window.onload = function() {
+$(document).ready( function() {
     set_tagCloud();
-};
+    //$('#tab1').addClass('active');
+    //$('#addcomment').hide();
+  });
 
  function set_tagCloud() {
  	try {
@@ -46,7 +47,19 @@ window.onload = function() {
     $('.container').append($div);
  }
 
+ function tab1_onclick() {
+    $('#tab2').removeClass('active');
+    $('#tab1').addClass('active');
+    $('#comments').show();
+    $('#addcomment').hide();
+ }
 
+ function tab2_onclick() {
+    $('#tab1').removeClass('active');
+    $('#tab2').addClass('active');
+    $('#comments').hide();
+    $('#addcomment').show();
+ }
   
   
 

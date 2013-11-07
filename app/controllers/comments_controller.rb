@@ -9,13 +9,17 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
 
-    @comment = @post.comments.create(params[:comment].permit(:commenter, :body, :password, :password_confirmation))
-    redirect_to post_path(@post)
+    @comment = @post.comments.build(params[:comment].permit(:commenter, :body, :password, :password_confirmation))
+     
     if @comment.save
       flash[:success] = "Comment success!"
+      redirect_to post_path(@post)
+
     else
       flash[:error] = "Comment failed!"
+      redirect_to post_path(@post)
     end
+
   end
   
   def del

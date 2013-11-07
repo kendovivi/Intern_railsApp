@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    #@comment = params[:test] ? params[:test] : Comment.new
     @comments = @post.comments.paginate(page: params[:page], per_page: 5)
   end
 
@@ -40,9 +41,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-
+    params[:post][:tag_ids] ||= []
     if @post.update(params[:post].permit(:title, :text, :avatar, tag_ids: []))
       redirect_to @post
+      flash[:success] = "Update success!"
     else
       render 'edit'
     end  

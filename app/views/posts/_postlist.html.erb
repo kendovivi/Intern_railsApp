@@ -6,7 +6,7 @@
 
 <!-- pages -->
 <div style="padding: 0 0 0 50px;">
-  <%= page_entries_info @posts %>
+  <span style="font-family:Impact;font-weight:normal;"><%= page_entries_info @posts %></span>
   <%= will_paginate @posts%><br>
 </div>
 
@@ -26,7 +26,7 @@
       <div style="float:left;margin-right: 5px;"><i class="icon-tags"></i></div>
       <% post.tag_ids.each do |tag_id| %>
         <div style="float:left;">
-          <a href= <%= posts_path(tag: tag_id) %> ><button class="btn btn-info" style="padding: 1px 2px 1px 2px;margin: 0 0 10px 4px;"><%= Tag.find(tag_id).name %></button></a>
+          <a href= <%= posts_path(tag: tag_id) %> ><button class="btn btn-info"><%= Tag.find(tag_id).name %></button></a>
         </div>
       <% end %>
     </div>
@@ -38,7 +38,7 @@
     <div class="post_text1">
       <span style="float:left;margin-right:20px"><a href="javascript:test()"><i class="icon-comment"> </i></a> <%= link_to post.comments.size, post_comments_path(post.id) %></span>
 
-      <span><%= post.created_at %><span>
+      <span><%= post.created_at.strftime('%Y-%m-%d %H:%M') %><span>
       <span style="float:right;padding-right:10px;">
       <i class="icon-eye-open"></i> <%= link_to 'Detail', post_path(post.id) %>
       <i class="icon-edit"></i> <%= link_to 'Edit', edit_post_path(post) %>

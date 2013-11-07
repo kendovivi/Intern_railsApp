@@ -80,3 +80,81 @@ canvas{
 	height:300px;
 	margin:20px 0 0 20px;
 }
+
+/* 
+Post Detail page 
+PD means Post Detail
+*/
+
+.PD_top {
+	border-bottom: 2px solid silver;
+}
+
+.PD_body {
+	border-bottom:5px double silver;
+	height:750px;
+	margin: 5px 0 20px 0;
+}
+
+.PD_body_left {
+	float:left;
+	width:25%;
+	height:600px;
+	margin-left: 5px;
+}
+
+.PD_image {
+	border: 0px solid silver;
+	width: 305px;
+}
+
+.PD_tags_icon {
+	 float:left;
+	 margin-right: 5px;
+}
+
+.PD_tags {
+	 float:left;
+}
+
+.btn.btn-info{
+	 padding: 1px 2px 1px 2px;
+	 margin: 0 0 10px 4px;
+}
+
+.PD_body_right {
+	 text-align:left;
+	 float:left;
+	 width:65%;
+	 height:600px;
+	 margin:0 0 0 50px;
+}
+
+.PD_text {
+     height:200px;
+	 background-color:#DBDBDB;
+	 border:3px groove silver;
+	 border-radius:10px;
+	 padding:5px 5px 5px 5px;
+	 margin:20px 0 0 0;
+	 word-break:break-all;
+}
+
+.nav.nav-tabs {
+    border-bottom:1px solid #E6E6E6;
+	padding:0 0 0 0;
+	margin:20px 0 0 0;
+}
+
+.PD_comments {
+	border-left:1px solid #E6E6E6;
+    border-bottom:1px solid #E6E6E6;
+    border-right:1px solid #E6E6E6;
+    padding:5px 30px 5px 30px;
+    height:auto;
+    word-break:break-all;
+}
+
+.red-border {
+	border: 1px solid red;
+}
