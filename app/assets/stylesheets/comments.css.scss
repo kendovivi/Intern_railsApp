@@ -2,4 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* comment form */
+/* comment form -- CF */
+
+.CF {
+	float: left;
+}
+
+.CF_error_msg {
+  font-size: 0.7em;
+  color: red;	
+}
+
+.CF_note {
+    width: 165px;
+    font-size: 0.7em;
+	border-top: 1px dotted #000;
+	margin: 5px 0 0 0;
+}
+
+.CF_right {
+	float: left;
+	margin: 10px 0 0 30px;
+}
+
+#CF_submit {
+	text-align: right;
+}
+
+#CF_clear {
+	clear: left;
+}

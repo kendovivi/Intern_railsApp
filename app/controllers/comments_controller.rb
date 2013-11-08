@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-  
-  http_basic_authenticate_with name: "admin", password: "admin", only: :destroy
 
   def index
     @comments = Post.find(params[:post_id]).comments.paginate(page: params[:page], per_page: 5)
@@ -8,16 +6,18 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-
+    @comments = @post.comments.where("id is not null").paginate(page: params[:page], per_page: 5)
     @comment = @post.comments.build(params[:comment].permit(:commenter, :body, :password, :password_confirmation))
-     
+    
+
     if @comment.save
       flash[:success] = "Comment success!"
       redirect_to post_path(@post)
 
     else
       flash[:error] = "Comment failed!"
-      redirect_to post_path(@post)
+      #11/8 solved with Baba san's help
+      render "posts/show"
     end
 
   end

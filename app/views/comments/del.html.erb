@@ -1,22 +1,14 @@
 <% if flash.any? %>
   <div class="alert alert-alert"><%= flash[:alert] %></div>
 <% end %>
-<%= form_tag(
-post_comment_path(params[:post_id],params[:id]),
- {
- 	method: "delete",
- }
- ) do %>
- 
-<p>
-  <%= label_tag 'password' %>
-  <%= password_field_tag 'password' %>
-</p>
 
 
-
-<p> 
-  <%= submit_tag :delete %>
-</p>
-
+<%= form_tag(post_comment_path(params[:post_id],params[:id]),{method: "delete",}) do %>
+  <p>
+    <%= label_tag 'password' %>
+    <%= password_field_tag 'password' %>
+  </p>
+  <p> 
+    <%= submit_tag :delete %>
+  </p>
 <% end %>

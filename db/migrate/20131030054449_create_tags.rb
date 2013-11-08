@@ -6,13 +6,9 @@ class CreateTags < ActiveRecord::Migration
       t.timestamps
     end
 
-    Tag.create name: 'Sports'
-    Tag.create name: 'Computer Science'
-    Tag.create name: 'Game'
-    Tag.create name: 'Travel'
-    Tag.create name: 'Grummy'
-    Tag.create name: 'Festival'
-    Tag.create name: 'Food'
-    Tag.create name: 'Fishing'
+    names = %w[Sports Computer-Science Game Travel Grummy Rails Festival BPS Japan Food Fishing HTML5 Facebook]
+    names.each do |name|
+      Tag.create name: name
+    end
   end
 end

@@ -1,9 +1,6 @@
 require 'will_paginate/array'
 
 class PostsController < ApplicationController
-  
-  http_basic_authenticate_with name:"admin", password: "admin", except: [:index, :show]
-
 
   def new
     @post = Post.new
@@ -21,7 +18,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
-    #@comment = params[:test] ? params[:test] : Comment.new
+    @comment = @post.comments.build
     @comments = @post.comments.paginate(page: params[:page], per_page: 5)
   end
 

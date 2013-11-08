@@ -1,28 +1,21 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Check point
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. search by Post title
+2. page will show all posts include the tag you click
+3. tagcloud (tagcanvas)
+4. page divider (will_paginate)
+5. upload image (paperclip)
+6. delete comment upon password
+7. outlook (bootstrap)
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+Pending problems
+
+1. test data by FactoryGirl
+2. tagcloud works only once unless refresh the page
+3. customized tags
+4. Ajax for input forms
+  

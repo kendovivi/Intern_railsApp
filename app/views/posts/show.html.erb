@@ -14,7 +14,10 @@
 
 <div class="PD_top">
   <h2>Post Detail</h2>
-  <i class="icon-edit"></i> <%= link_to 'Edit Post', edit_post_path(@post) %> | <i class="icon-circle-arrow-left"></i> <%= link_to 'Back to PostsList', posts_path %>
+  <i class="icon-edit"></i> 
+  <%= link_to 'Edit Post', edit_post_path(@post) %> | 
+  <i class="icon-circle-arrow-left"></i> 
+  <%= link_to 'Back to PostsList', posts_path %>
 </div>
 
 <div class="PD_body">
@@ -26,7 +29,7 @@
     </p>
 
     <p class="PD_image">
-      <%= image_tag @post.avatar(:medium) %>
+      <%= @post.avatar.size ? image_tag(@post.avatar(:medium)) : image_tag("no_pic.png", size: "180x100") %>
     </p>
 
     <div class="PD_tags_icon"><i class="icon-tags"></i></div>

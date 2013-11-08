@@ -23,13 +23,7 @@
       <%= post.title %>
     </div>
     <div class="post_title2">
-      <div style="float:left;margin-right: 5px;"><i class="icon-tags"></i></div>
-      <% post.tag_ids.each do |tag_id| %>
-        <div style="float:left;">
-          <a href= <%= posts_path(tag: tag_id) %> ><button class="btn btn-info"><%= Tag.find(tag_id).name %></button></a>
-        </div>
-      <% end %>
-    </div>
+      <%= raw get_tags(post, 6) %>
   </div>
 
 

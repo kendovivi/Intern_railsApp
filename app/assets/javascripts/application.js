@@ -36,7 +36,7 @@ $(document).ready( function() {
     }
  }
 
- function test() {
+ function comment_field() {
     var $input = $('<input type="text" />');
     var $btn = $('<input type="button" value="x" />');
     $btn.click(function() {
